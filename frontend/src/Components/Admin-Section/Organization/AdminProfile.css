@@ -1,0 +1,236 @@
+/* ===============================
+   MAIN PROFILE LAYOUT
+================================== */
+.profile-section {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  /* same background as employee-page */
+}
+
+/* Wrapper — keep Topbar on top and banner in center */
+.profile-banner-wrapper {
+  flex: 1;
+  display: block !important;
+  overflow-y: auto;
+  padding: 30px;
+  position: relative;
+  background: #eff5ff !important;
+}
+
+/* Topbar always at the top */
+.profile-banner-wrapper .topbar {
+    padding-top: 5px;
+  padding-bottom: 8px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: 40px; /* centers horizontally */
+  display: block;
+  margin-top:0px;
+}
+
+/* Center the Banner Container below the Topbar */
+.profile-banner-container {
+  width: 1080px;
+  margin: 0 auto;                 /* centers horizontally */
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  transform: translateY(10%);     /* pushes it slightly to center vertically */
+}
+
+
+
+/* ===============================
+   TOP GRADIENT BANNER
+================================== */
+.profile-banner-top {
+  position: relative;
+  height: 150px;
+  background: linear-gradient(91deg, #19bde8 60%, #0e6a82 100%);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: visible;
+}
+
+/* ===============================
+   PROFILE IMAGE
+================================== */
+.profile-image-wrapper {
+  position: absolute;
+  left: 40px;
+  top: 80%;
+  transform: translateY(-50%);
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #fff;
+  padding: 3px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ===============================
+   BANNER ILLUSTRATIONS
+================================== */
+.profile-banner-arrow {
+  position: absolute;
+  right: 240px;
+  top: 75%;
+  transform: translateY(-50%);
+  height: 100px;
+  width: auto;
+  opacity: 0.9;
+  z-index: 2;
+}
+
+.profile-banner-illustration {
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  max-height: 140px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.95;
+  z-index: 1;
+}
+
+/* ===============================
+   INFO CARD (BOTTOM WHITE SECTION)
+================================== */
+.profile-info-card {
+  background: #fff;
+  padding: 50px 40px 40px 40px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
+}
+
+/* ===============================
+   GRID LAYOUT FOR DETAILS
+================================== */
+.profile-info-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  align-items: start;
+  gap: 20px;
+  color: #000;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* ===============================
+   LEFT SECTION
+================================== */
+.profile-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.profile-name-line {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.profile-name {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #000;
+}
+
+.profile-id {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.profile-role {
+  color: #333;
+  font-weight: 500;
+}
+
+.profile-location {
+  color: #555;
+}
+
+/* ===============================
+   CENTER SECTION
+================================== */
+.profile-center div {
+  color: #444;
+  margin-bottom: 6px;
+}
+
+/* ===============================
+   RIGHT SECTION
+================================== */
+.profile-right {
+  text-align: right;
+}
+
+.profile-right div {
+  color: #444;
+  margin-bottom: 6px;
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+================================== */
+@media (max-width: 992px) {
+  .profile-info-grid {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .profile-right {
+    text-align: left;
+  }
+
+  .profile-banner-wrapper {
+    padding: 20px;
+  }
+
+  .profile-image-wrapper {
+    left: 30px;
+    top: 85%;
+    width: 90px;
+    height: 90px;
+  }
+
+  .profile-info-card {
+    padding: 40px 25px;
+  }
+}
+
+@media (max-width: 576px) {
+  .profile-banner-top {
+    height: 120px;
+  }
+
+  .profile-image-wrapper {
+    left: 25px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-name {
+    font-size: 1rem;
+  }
+
+  .profile-info-card {
+    padding: 30px 20px;
+  }
+}
