@@ -12,8 +12,9 @@ import os
 from dotenv import load_dotenv
 import psycopg2
 import os
+import mysql.connector
 
-conn = psycopg2.connect('postgresql://stafio_db_user:9xQbEDR24zdtbyznodhtronry25my4EN@dpg-d49hg1buibrs739789jg-a.oregon-postgres.render.com/stafio_db')
+# conn = psycopg2.connect('postgresql://stafio_db_user:9xQbEDR24zdtbyznodhtronry25my4EN@dpg-d49hg1buibrs739789jg-a.oregon-postgres.render.com/stafio_db')
 
 
 load_dotenv()
@@ -22,7 +23,8 @@ DB_CONFIG = {
     'host': os.getenv('MYSQL_HOST'),
     'user': os.getenv('MYSQL_USER'),
     'password': os.getenv('MYSQL_PASSWORD'),
-    'database': os.getenv('MYSQL_DB')
+    'database': os.getenv('MYSQL_DB'),
+    'port': int(os.getenv('PORT', 3306))
 }
 
 # Function to get a new database connection
