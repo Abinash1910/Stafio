@@ -41,7 +41,7 @@ const LeaveRequestForm = () => {
 
     try {
       const res = await axios.post(
-        "http://127.0.0.1:5000/leave_requests",
+        "https://stafio-1.onrender.com/leave_requests",
         {
           ...formData,
           user_id: localStorage.getItem("userId"),

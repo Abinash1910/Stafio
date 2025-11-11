@@ -15,7 +15,7 @@ const EmployeeLogin = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const loginUrl = "http://127.0.0.1:5000/employee_login"; // ✅ your backend endpoint
+    const loginUrl = "https://stafio-1.onrender.com/employee_login"; // ✅ your backend endpoint
 
     try {
       const response = await fetch(loginUrl, {

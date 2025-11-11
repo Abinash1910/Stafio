@@ -13,7 +13,7 @@ export default function MyLeave() {
   useEffect(() => {
     const fetchLeaveData = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:5000/api/myleave");
+        const response = await axios.get("https://stafio-1.onrender.com/api/myleave");
         setLeaveData(response.data);
       } catch (error) {
         console.error("Error fetching leave data:", error);
