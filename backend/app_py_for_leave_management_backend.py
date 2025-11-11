@@ -9,13 +9,15 @@ from flask_cors import CORS
 from datetime import date
 from functools import wraps
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 # Database configuration
 DB_CONFIG = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': 'Abinash@1910', # !! IMPORTANT: Ensure this is your actual MySQL password
-    'database': 'leave_management_db'
+    'host': os.getenv('MYSQL_HOST'),
+    'user': os.getenv('MYSQL_USER'),
+    'password': os.getenv('MYSQL_PASSWORD'),
+    'database': os.getenv('MYSQL_DB')
 }
 
 # Function to get a new database connection
