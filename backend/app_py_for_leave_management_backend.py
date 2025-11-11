@@ -10,6 +10,11 @@ from datetime import date
 from functools import wraps
 import os
 from dotenv import load_dotenv
+import psycopg2
+import os
+
+conn = psycopg2.connect('postgresql://stafio_db_user:9xQbEDR24zdtbyznodhtronry25my4EN@dpg-d49hg1buibrs739789jg-a.oregon-postgres.render.com/stafio_db')
+
 
 load_dotenv()
 # Database configuration
