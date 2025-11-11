@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./MyRegularization.css";
 import { FaEdit, FaTimesCircle, FaFilter, FaUpload } from "react-icons/fa";
-import illustration from "../../../assets/timemgnt.png"; // Add your illustration image
+import timemgnt from "../../../assets/Timemgnt.png";
 import AdminSidebar from "../AdminSidebar";
 import Topbar from "../Topbar";
 import { useNavigate } from "react-router-dom";
@@ -185,7 +185,7 @@ export default function MyRegularization() {
 
                   {/* Right Image Section */}
                   <div className="regularization-right">
-                    <img src={illustration} alt="Regularization Illustration" />
+                    <img src={timemgnt} alt="Regularization Illustration" />
                   </div>
                 </form>
               </div>
