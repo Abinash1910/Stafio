@@ -36,7 +36,7 @@ def get_db_connection():
 app = Flask(__name__)
 
 
-CORS(app, supports_credentials=True, resources={r"/*": {"origins": "http://localhost:5173"}})
+CORS(app, supports_credentials=True, resources={r"/*": {"origins": ["https://stafio-frontend.onrender.com"]}})
 app.config['SESSION_COOKIE_SAMESITE'] = 'None'
 app.config['SESSION_COOKIE_SECURE'] = True
 
