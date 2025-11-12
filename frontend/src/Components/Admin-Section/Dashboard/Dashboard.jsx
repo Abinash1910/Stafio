@@ -245,7 +245,7 @@ const Dashboard = () => {
                           </div>
                         </div>
                         <button className="btn-punch" onClick={handlePunchIn}>
-                          Punch In
+                          Check In
                         </button>
                       </>
                     ) : (
@@ -259,7 +259,7 @@ const Dashboard = () => {
                         </p>
                         <div className="punch-info-box">
                           <div className="info-item">
-                            <span>Punch In :</span>{" "}
+                            <span>Check In :</span>{" "}
                             <strong>{formatTime(punchInTime)}</strong>
                           </div>
                           <div className="info-item">
@@ -273,7 +273,7 @@ const Dashboard = () => {
                             className="btn-punch-out"
                             onClick={handlePunchOut}
                           >
-                            Punch Out
+                            Check Out
                           </button>
                           <button
                             className="btn-start-break"

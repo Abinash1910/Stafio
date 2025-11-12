@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Form, Button, Alert, Container, Row, Col } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Alert,
+  Container,
+  Row,
+  Col,
+  ProgressBar,
+  InputGroup,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./AdminRegister.css";
 
@@ -8,6 +17,7 @@ import "./AdminRegister.css";
 import BGShape from "../../assets/BGShape.png";
 import teampluslogo from "../../assets/stafioimg.png";
 import Registerlogo from "../../assets/registerlogo.png";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const AdminRegister = () => {
   const [formData, setFormData] = useState({
@@ -21,6 +31,9 @@ const AdminRegister = () => {
 
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [password, setPassword] = useState("");
+  const [strength, setStrength] = useState(0);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -32,11 +45,46 @@ const AdminRegister = () => {
     setMessage("");
 
     try {
-      const res = await axios.post("https://stafio-1.onrender.com/register", formData);
+      const res = await axios.post(
+        "https://stafio-1.onrender.com/register",
+        formData
+      );
       setMessage(res.data.message);
     } catch (err) {
       setError(err.response?.data?.message || "Registration failed");
     }
+  };
+
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+    setFormData({ ...formData, password: value }); // ✅ Update formData.password
+
+    let strengthScore = 0;
+
+    if (/[A-Z]/.test(value)) strengthScore += 1;
+    if (/\d/.test(value)) strengthScore += 1;
+    if (value.length >= 8) strengthScore += 1;
+    if (/[!@#$%^&*(),.?":{}|<>]/.test(value)) strengthScore += 1;
+
+    setStrength(strengthScore);
+  };
+
+  // Determine progress bar color and label
+  const getVariant = () => {
+    if (strength === 1) return "danger"; // Red
+    if (strength === 2) return "warning"; // Yellow
+    if (strength === 3) return "ok"; // orange
+    if (strength === 4) return "success"; // Green
+    return "secondary"; // Grey (empty)
+  };
+
+  const getLabel = () => {
+    if (strength === 1) return "Weak";
+    if (strength === 2) return "Moderate";
+    if (strength === 3) return "Almost Strong";
+    if (strength === 4) return "Strong";
+    return "";
   };
 
   return (
@@ -56,7 +104,7 @@ const AdminRegister = () => {
                 alt="Team Plus Logo"
                 className="teamplus-logo"
               />
-          </div>
+            </div>
 
             <h2 className="register-heading">One Portal,</h2>
             <h4 className="register-subheading">Unlimited Potential</h4>
@@ -100,14 +148,67 @@ const AdminRegister = () => {
 
               <Form.Group className="mb-3">
                 <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password"
-                  placeholder="Enter password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                />
+
+                {/* Input with eye toggle */}
+                <InputGroup className="align-items-center">
+                  <div style={{ position: "relative" }}>
+                    <Form.Control
+                      type={showPassword ? "text" : "password"}
+                      name="password"
+                      placeholder="Enter password"
+                      value={formData.password}
+                      onChange={handlePasswordChange}
+                      required
+                      style={{ paddingRight: "40px" }} // add space for the eye icon
+                    />
+                    <span
+                      onClick={() => setShowPassword(!showPassword)}
+                      style={{
+                        position: "absolute",
+                        right: "10px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        cursor: "pointer",
+                        color: "#6c757d",
+                      }}
+                    >
+                      {showPassword ? (
+                        <FaEye size={18} />
+                      ) : (
+                        <FaEyeSlash size={18} />
+                      )}
+                    </span>
+                  </div>
+                </InputGroup>
+
+                {/* Progress bar */}
+                {password && (
+                  <div style={{ marginTop: "8px" }}>
+                    <ProgressBar
+                      now={(strength / 4) * 100}
+                      variant={getVariant()}
+                      animated
+                      label={getLabel()}
+                    />
+                    <div style={{ fontSize: "13px", marginTop: "4px" }}>
+                      <span style={{ color: strength >= 4 ? "green" : "red" }}>
+                        • At least one uppercase
+                      </span>
+                      <br />
+                      <span style={{ color: strength >= 4 ? "green" : "red" }}>
+                        • At least one number
+                      </span>
+                      <br />
+                      <span style={{ color: strength >= 4 ? "green" : "red" }}>
+                        • Minimum 8 characters
+                      </span>
+                      <br />
+                      <span style={{ color: strength >= 4 ? "green" : "red" }}>
+                        • At least one special character
+                      </span>
+                    </div>
+                  </div>
+                )}
               </Form.Group>
 
               <Form.Group className="mb-3">
