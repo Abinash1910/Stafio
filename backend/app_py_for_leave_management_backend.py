@@ -562,6 +562,146 @@ def get_admin_attendance_data():
     return jsonify(attendance_data)
 
 
+# Mansoor's code added
+
+# --- Admin Profile Endpoint ---
+@app.route('/admin_profile/<int:user_id>', methods=['GET'])
+@custom_admin_required()
+def get_admin_profile_data(user_id):
+    """
+    Returns admin profile data for the specified user.
+    Mock data - replace with actual database queries later.
+    """
+    # Mock profile data
+    admin_profile_data = {
+        "profile": {
+            "profileImage": "",
+            "name": "Aiswarya Shyamkumar",
+            "gender": "Female",
+            "dob": "1993-07-22",
+            "maritalStatus": "Married",
+            "nationality": "India",
+            "bloodGroup": "A+",
+            "email": "aiswarya@gmail.com",
+            "phone": "9895195971",
+            "address": "Kattasseri House, Kalarikal, Alappuzha, Kerala",
+            "emergencyContactNumber": "9895195971",
+            "relationship": "Husband",
+            "empType": "Internship",
+            "department": "Design",
+            "location": "Kerala",
+            "supervisor": "Sakshi Chadchankar",
+            "hrManager": "S. Santhana Lakshmi",
+            "empId": "1234567",
+            "status": "Active"
+        },
+        "education": {
+            "institution": "CEMP Punnapra",
+            "location": "Kerala",
+            "startDate": "2012-07-22",
+            "endDate": "2016-07-22",
+            "qualification": "B.Tech",
+            "specialization": "Computer Science",
+            "skills": ["Illustrator", "Photoshop", "Figma", "Adobe XD"],
+            "portfolio": "https://www.behance.net/gallery/229448069/Training-Provider-Web-UI-Design"
+        },
+        "experience": {
+            "company": "Azym Technology",
+            "jobTitle": "UIUX Designer",
+            "startDate": "2017-07-22",
+            "endDate": "2022-07-22",
+            "responsibilities": "Conduct user research, interviews, and usability testing to gather insights.",
+            "totalYears": 4
+        },
+        "bank": {
+            "bankName": "SBI",
+            "branch": "Alappuzha",
+            "accountNumber": "123456789101",
+            "ifsc": "IFC12345",
+            "aadhaar": "123456789101",
+            "pan": "IFC12345"
+        },
+        "documents": [
+            {"fileName": "Signed OfferLetter.pdf", "status": "Completed"},
+            {"fileName": "DegreeCertificate.pdf", "status": "Completed"},
+            {"fileName": "Pan Card.pdf", "status": "Completed"}
+        ]
+    }
+    
+    return jsonify(admin_profile_data), 200
+
+
+# --- Employee Profile Endpoint ---
+@app.route('/employee_profile/<int:user_id>', methods=['GET'])
+@custom_user_required()
+def get_employee_profile_data(user_id):
+    """
+    Returns employee profile data for the specified user.
+    Mock data - replace with actual database queries later.
+    """
+    # Check if the requesting user is accessing their own profile
+    current_user_id = request.current_user_id
+    if current_user_id != user_id and request.headers.get('X-User-Role') != 'admin':
+        return jsonify({"message": "Unauthorized to view this profile."}), 403
+    
+    # Mock profile data
+    employee_profile_data = {
+        "profile": {
+            "profileImage": "",
+            "name": "Aiswarya Shyamkumar",
+            "gender": "Female",
+            "dob": "1993-07-22",
+            "maritalStatus": "Married",
+            "nationality": "India",
+            "bloodGroup": "A+",
+            "email": "aiswarya@gmail.com",
+            "phone": "9895195971",
+            "address": "Kattasseri House, Kalarikal, Alappuzha, Kerala",
+            "emergencyContactNumber": "9895195971",
+            "relationship": "Husband",
+            "empType": "Internship",
+            "department": "Design",
+            "location": "Kerala",
+            "supervisor": "Sakshi Chadchankar",
+            "hrManager": "S. Santhana Lakshmi",
+            "empId": "1234567",
+            "status": "Active"
+        },
+        "education": {
+            "institution": "CEMP Punnapra",
+            "location": "Kerala",
+            "startDate": "2012-07-22",
+            "endDate": "2016-07-22",
+            "qualification": "B.Tech",
+            "specialization": "Computer Science",
+            "skills": ["Illustrator", "Photoshop", "Figma", "Adobe XD"],
+            "portfolio": "https://www.behance.net/gallery/229448069/Training-Provider-Web-UI-Design"
+        },
+        "experience": {
+            "company": "Azym Technology",
+            "jobTitle": "UIUX Designer",
+            "startDate": "2017-07-22",
+            "endDate": "2022-07-22",
+            "responsibilities": "Conduct user research, interviews, and usability testing to gather insights.",
+            "totalYears": 4
+        },
+        "bank": {
+            "bankName": "SBI",
+            "branch": "Alappuzha",
+            "accountNumber": "123456789101",
+            "ifsc": "IFC12345",
+            "aadhaar": "123456789101",
+            "pan": "IFC12345"
+        },
+        "documents": [
+            {"fileName": "Signed OfferLetter.pdf", "status": "Completed"},
+            {"fileName": "DegreeCertificate.pdf", "status": "Completed"},
+            {"fileName": "Pan Card.pdf", "status": "Completed"}
+        ]
+    }
+    
+    return jsonify(employee_profile_data), 200
+
 
 
 
